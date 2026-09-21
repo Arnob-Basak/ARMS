@@ -4,7 +4,7 @@
 
 ### A student-to-student academic resource sharing platform for the BAUET community
 
-🌐 **Live Website:** [https://admirable-biscuit-ecdcfb.netlify.app/](https://admirable-biscuit-ecdcfb.netlify.app/)
+🌐 **Live Website:** [https://arms-arnob.netlify.app/](https://arms-arnob.netlify.app/)
 
 </div>
 
@@ -144,13 +144,13 @@ This project is a **static frontend website**, so there is no npm installation o
 ### Step 1 — Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+git clone https://github.com/Arnob-Basak/ARMS.git
 ```
 
 ### Step 2 — Enter the Project Folder
 
 ```bash
-cd YOUR-REPOSITORY
+cd ARMS
 ```
 
 ### Step 3 — Start a Local Server
@@ -253,7 +253,7 @@ The layout, navigation, forms, cards, and resource grids automatically adapt to 
 
 The project is currently deployed using **Netlify**.
 
-🔗 **Live Site:** [https://admirable-biscuit-ecdcfb.netlify.app/](https://admirable-biscuit-ecdcfb.netlify.app/)
+🔗 **Live Site:** [https://arms-arnob.netlify.app/](https://arms-arnob.netlify.app/)
 
 Because ARMS is a static website, it can also be deployed on services such as:
 
