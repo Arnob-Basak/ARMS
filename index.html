@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123c43">
+    <meta name="description"
+        content="ARMS connects the BAUET community with academic notes, books, lab equipment, question papers and study resources.">
+    <title>Your campus resource hub · ARMS</title>
+    <link rel="icon" href="arms.png" type="image/png">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="ui.js"></script>
+    <script type="module" src="nav-auth-menu.js"></script>
+</head>
+
+<body class="page-home"><a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-progress" aria-hidden="true"></div>
+    <header class="site-header">
+        <div class="container header-inner"><a class="brand" href="index.html" aria-label="ARMS home"><img
+                    src="arms.png" width="42" height="42" alt=""><span>ARMS<small>THE CAMPUS RESOURCE
+                        HUB</small></span></a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="index.html" aria-current="page">Home</a><a href="ads.html">Browse resources</a><a
+                    href="index.html#how-it-works">How it works</a>
+            </nav>
+            <div class="header-actions"><a href="login.html" class="sign-in-link" id="headerLogin">Sign in</a><a
+                    href="post-ad.html" class="btn btn-primary btn-small" id="postAdBtn"><svg class="icon "
+                        aria-hidden="true">
+                        <use href="icons.svg#plus"></use>
+                    </svg><span>Post an ad</span></a><button type="button" class="theme-toggle icon-btn"
+                    data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"
+                    title="Switch to dark mode"><svg class="icon theme-icon-moon" aria-hidden="true">
+                        <use href="icons.svg#moon"></use>
+                    </svg><svg class="icon theme-icon-sun" aria-hidden="true">
+                        <use href="icons.svg#sun"></use>
+                    </svg><span class="theme-label">Dark</span></button><button id="kebabBtn" class="icon-btn"
+                    aria-label="Open account and navigation menu" aria-haspopup="dialog" aria-controls="slideMenu"
+                    aria-expanded="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#menu"></use>
+                    </svg></button></div>
+        </div>
+    </header>
+    <dialog id="slideMenu" class="slide-menu" aria-labelledby="menuTitle">
+        <div class="drawer-top">
+            <h2 id="menuTitle">Your campus space</h2><button class="icon-btn" data-close-dialog
+                aria-label="Close menu"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#close"></use>
+                </svg></button>
+        </div>
+        <div class="menu-user"><span class="avatar" id="menuAvatar"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg></span>
+            <div>
+                <h3 id="menuName">Welcome to ARMS</h3>
+                <p id="menuEmail">Learn more. Share more.</p>
+            </div>
+        </div>
+        <nav class="menu-items" aria-label="Account and mobile navigation"><a href="index.html"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#grid"></use>
+                </svg>Home</a><a href="ads.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#book"></use>
+                </svg>Browse resources</a><a href="index.html#how-it-works"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#info"></use>
+                </svg>How it works</a><a href="post-ad.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#plus"></use>
+                </svg>Post an ad</a><button id="menuProfile" hidden><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg>My profile & ads</button><a id="menuLogin" href="login.html"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#lock"></use>
+                </svg>Sign in</a><a id="menuRegister" href="register.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#users"></use>
+                </svg>Create an account</a><button id="menuLogout" hidden><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#logout"></use>
+                </svg>Sign out</button></nav>
+        <p class="drawer-foot">A little sharing goes a long way.<br><span>Made for the BAUET community.</span></p>
+    </dialog>
+    <dialog id="profileDialog" class="profile-modal" aria-labelledby="profileTitle">
+        <div class="dialog-heading">
+            <div><span class="eyebrow">YOUR ACCOUNT</span>
+                <h2 id="profileTitle">My profile</h2>
+            </div><button class="icon-btn" data-close-dialog aria-label="Close profile"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#close"></use>
+                </svg></button>
+        </div>
+        <div class="profile-person"><span class="avatar" id="dlgAvatar"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg></span>
+            <div>
+                <h3 id="dlgName"></h3>
+                <p id="dlgEmail"></p>
+            </div>
+        </div>
+        <div class="section-heading">
+            <h3>My ads <span class="count-badge" id="adsCount">—</span></h3><a href="post-ad.html"
+                class="text-link">Post an ad <svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#plus"></use>
+                </svg></a>
+        </div>
+        <div class="ads-grid profile-grid" id="userAdsContainer"></div>
+    </dialog>
+    <div class="network-banner" id="networkBanner" role="status" hidden><svg class="icon " aria-hidden="true">
+            <use href="icons.svg#info"></use>
+        </svg>You’re offline. Reconnect to load or share resources.</div>
+    <main id="main">
+        <section class="hero">
+            <div class="container hero-layout">
+                <div class="hero-copy"><span class="hero-eyebrow"><span></span>FOR STUDENTS. BY STUDENTS.</span>
+                    <h1>Your next chapter<br>starts with a<br><span>shared resource.</span></h1>
+                    <p>Find the notes you need. Pass on the books you love.<br class="desktop-break"> Make learning a
+                        little easier for someone at BAUET.</p>
+                    <form class="hero-search" action="ads.html" method="get" role="search"><label
+                            class="visually-hidden" for="homeSearchInput">Search academic resources</label><svg
+                            class="icon " aria-hidden="true">
+                            <use href="icons.svg#search"></use>
+                        </svg><input type="search" id="homeSearchInput" name="q"
+                            placeholder="Books, notes, lab essentials…" maxlength="150"><button class="btn btn-primary"
+                            id="searchButton" type="submit">Search <svg class="icon " aria-hidden="true">
+                                <use href="icons.svg#arrow"></use>
+                            </svg></button></form>
+                    <div class="popular"><span>Popular:</span><a href="ads.html?category=Notes">Class notes</a><a
+                            href="ads.html?category=Books">Textbooks</a><a
+                            href="ads.html?category=Question%20Papers">Past papers</a></div>
+                    <div class="hero-foot"><svg class="icon " aria-hidden="true">
+                            <use href="icons.svg#users"></use>
+                        </svg>One campus. A world of knowledge.</div>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="art-orbit orbit-one"></div>
+                    <div class="art-orbit orbit-two"></div><span class="art-dot dot-one"></span><span
+                        class="art-dot dot-two"></span>
+                    <div class="art-label">A LITTLE SHARING. A LOT OF POSSIBILITY.</div>
+                    <div class="book-stack">
+                        <div class="book-back"></div>
+                        <div class="book-front"><span class="book-topline">THE STUDENT EDITION / 01</span><svg
+                                class="icon " aria-hidden="true">
+                                <use href="icons.svg#book"></use>
+                            </svg><strong>Great things<br>start with<br><em>shared ideas.</em></strong>
+                            <div class="book-rule"></div><small>LEARN · SHARE · GROW</small>
+                        </div>
+                        <div class="book-bottom"></div>
+                    </div>
+                    <div class="float-card float-notes"><span class="tile-icon mint"><svg class="icon "
+                                aria-hidden="true">
+                                <use href="icons.svg#notes"></use>
+                            </svg></span>
+                        <div><strong>Notes worth sharing</strong><span>From one student to another</span></div><svg
+                            class="icon " aria-hidden="true">
+                            <use href="icons.svg#check"></use>
+                        </svg>
+                    </div>
+                    <div class="float-card float-community">
+                        <div class="mini-avatars"><b>A</b><b>R</b><b>M</b></div>
+                        <div><strong>Better, together.</strong><span>Your campus. Your community.</span></div>
+                    </div><span class="art-spark"><svg class="icon " aria-hidden="true">
+                            <use href="icons.svg#spark"></use>
+                        </svg></span>
+                </div>
+            </div>
+        </section>
+        <div class="values-strip">
+            <div class="container values-inner"><span><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#book"></use>
+                    </svg>Everything for your next semester</span><span><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#users"></use>
+                    </svg>Connect with fellow students</span><span><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#leaf"></use>
+                    </svg>Reuse more. Spend less.</span></div>
+        </div>
+        <section class="container section categories" id="categories">
+            <div class="section-heading">
+                <div><span class="eyebrow">FIND YOUR STARTING POINT</span>
+                    <h2>A resource for every chapter.</h2>
+                    <p>From your first lecture to your final project.</p>
+                </div><a href="ads.html" class="text-link">Browse all resources <svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#arrow"></use>
+                    </svg></a>
+            </div>
+            <div class="category-grid"><a class="category-card" href="ads.html?category=Notes"><span
+                        class="tile-icon mint"><svg class="icon " aria-hidden="true">
+                            <use href="icons.svg#notes"></use>
+                        </svg></span>
+                    <h3>Notes</h3>
+                    <p>Lecture notes & summaries</p><span class="category-bottom">Explore <svg class="icon "
+                            aria-hidden="true">
+                            <use href="icons.svg#arrow"></use>
+                        </svg></span>
+                </a><a class="category-card" href="ads.html?category=Books"><span class="tile-icon blue"><svg
+                            class="icon " aria-hidden="true">
+                            <use href="icons.svg#book"></use>
+                        </svg></span>
+                    <h3>Books</h3>
+                    <p>Textbooks & reference reads</p><span class="category-bottom">Explore <svg class="icon "
+                            aria-hidden="true">
+                            <use href="icons.svg#arrow"></use>
+                        </svg></span>
+                </a><a class="category-card" href="ads.html?category=Lab%20Equipment"><span class="tile-icon peach"><svg
+                            class="icon " aria-hidden="true">
+                            <use href="icons.svg#flask"></use>
+                        </svg></span>
+                    <h3>Lab Equipment</h3>
+                    <p>Tools for hands-on learning</p><span class="category-bottom">Explore <svg class="icon "
+                            aria-hidden="true">
+                            <use href="icons.svg#arrow"></use>
+                        </svg></span>
+                </a><a class="category-card" href="ads.html?category=Question%20Papers"><span
+                        class="tile-icon lavender"><svg class="icon " aria-hidden="true">
+                            <use href="icons.svg#question"></use>
+                        </svg></span>
+                    <h3>Question Papers</h3>
+                    <p>Prepare with past papers</p><span class="category-bottom">Explore <svg class="icon "
+                            aria-hidden="true">
+                            <use href="icons.svg#arrow"></use>
+                        </svg></span>
+                </a><a class="category-card" href="ads.html?category=Assignments"><span class="tile-icon sand"><svg
+                            class="icon " aria-hidden="true">
+                            <use href="icons.svg#checklist"></use>
+                        </svg></span>
+                    <h3>Assignments</h3>
+                    <p>Examples & study references</p><span class="category-bottom">Explore <svg class="icon "
+                            aria-hidden="true">
+                            <use href="icons.svg#arrow"></use>
+                        </svg></span>
+                </a></div>
+        </section>
+        <section class="how-section" id="how-it-works">
+            <div class="container section">
+                <div class="section-heading">
+                    <div><span class="eyebrow">LESS SEARCHING. MORE LEARNING.</span>
+                        <h2>Good resources. Simple connections.</h2>
+                    </div>
+                    <p class="heading-note">A home for the things that helped you.<br>A head start for the person who
+                        needs them next.</p>
+                </div>
+                <div class="steps-grid">
+                    <article class="step"><span class="step-number">01 / DISCOVER</span>
+                        <div class="step-title"><svg class="icon " aria-hidden="true">
+                                <use href="icons.svg#search"></use>
+                            </svg>
+                            <h3>Find your next resource</h3>
+                        </div>
+                        <p>Explore five categories or search for the materials you need for your course.</p>
+                    </article>
+                    <article class="step"><span class="step-number">02 / CONNECT</span>
+                        <div class="step-title"><svg class="icon " aria-hidden="true">
+                                <use href="icons.svg#users"></use>
+                            </svg>
+                            <h3>Make a campus connection</h3>
+                        </div>
+                        <p>Open a listing, check the details, and contact the student who shared it.</p>
+                    </article>
+                    <article class="step"><span class="step-number">03 / PASS IT ON</span>
+                        <div class="step-title"><svg class="icon " aria-hidden="true">
+                                <use href="icons.svg#leaf"></use>
+                            </svg>
+                            <h3>Give learning another life</h3>
+                        </div>
+                        <p>Have something useful? Post an ad and help another student take the next step.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="container cta-wrap">
+            <div class="community-cta">
+                <div><span class="eyebrow">YOUR OLD FAVOURITE. SOMEONE’S NEW START.</span>
+                    <h2>Done with it? Pass it on.</h2>
+                    <p>Turn your shelf of resources into someone else’s opportunity.</p>
+                </div><a href="post-ad.html" class="btn btn-light">Share a resource <svg class="icon "
+                        aria-hidden="true">
+                        <use href="icons.svg#arrow"></use>
+                    </svg></a>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-about"><a class="brand" href="index.html" aria-label="ARMS home"><img src="arms.png"
+                        width="42" height="42" alt=""><span>ARMS<small>THE CAMPUS RESOURCE HUB</small></span></a>
+                <p>Good resources deserve a second chapter.<br>Connecting students through knowledge,<br>one resource at
+                    a time.</p><span class="footer-location"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#location"></use>
+                    </svg>BAUET, Natore, Bangladesh</span>
+            </div>
+            <div>
+                <h3>Explore resources</h3>
+                <ul>
+                    <li><a href="ads.html?category=Notes">Notes</a></li>
+                    <li><a href="ads.html?category=Books">Books</a></li>
+                    <li><a href="ads.html?category=Lab%20Equipment">Lab Equipment</a></li>
+                    <li><a href="ads.html?category=Question%20Papers">Question Papers</a></li>
+                    <li><a href="ads.html?category=Assignments">Assignments</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Your campus space</h3>
+                <ul>
+                    <li><a href="post-ad.html">Post an ad</a></li>
+                    <li><a href="login.html">Sign in</a></li>
+                    <li><a href="register.html">Join the community</a></li>
+                    <li><a href="index.html#how-it-works">How it works</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Get in touch</h3>
+                <p>Arnob Basak<br>Nichabazar, Natore-6400</p><a
+                    href="mailto:arnobbasak.ad07@gmail.com">Email</a><a href="tel:+88017">+880 1773
+                    985115</a>
+            </div>
+        </div>
+        <div class="container footer-bottom"><span>© <span data-year>2026</span> ARMS. All rights
+                reserved.</span><span>Created by Arnob Basak</span><button class="icon-btn scroll-top"
+                aria-label="Back to top"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#up"></use>
+                </svg></button></div>
+    </footer>
+    <div id="toastRegion" class="toast-region" role="status" aria-live="polite"></div><noscript>
+        <div class="noscript-note">Please enable JavaScript to sign in, load resources and post ads.</div>
+    </noscript>
+</body>
+
+</html>

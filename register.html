@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123c43">
+    <meta name="description"
+        content="ARMS connects the BAUET community with academic notes, books, lab equipment, question papers and study resources.">
+    <title>Create an account · ARMS</title>
+    <link rel="icon" href="arms.png" type="image/png">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="ui.js"></script>
+    <script type="module" src="nav-auth-menu.js"></script>
+    <script type="module" src="auth-forms.js"></script>
+</head>
+
+<body class="page-register"><a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-progress" aria-hidden="true"></div>
+    <header class="site-header">
+        <div class="container header-inner"><a class="brand" href="index.html" aria-label="ARMS home"><img
+                    src="arms.png" width="42" height="42" alt=""><span>ARMS<small>THE CAMPUS RESOURCE
+                        HUB</small></span></a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="ads.html">Browse resources</a><a
+                    href="index.html#how-it-works">How it works</a>
+            </nav>
+            <div class="header-actions"><a href="login.html" class="sign-in-link" id="headerLogin">Sign in</a><a
+                    href="post-ad.html" class="btn btn-primary btn-small" id="postAdBtn"><svg class="icon "
+                        aria-hidden="true">
+                        <use href="icons.svg#plus"></use>
+                    </svg><span>Post an ad</span></a><button type="button" class="theme-toggle icon-btn"
+                    data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"
+                    title="Switch to dark mode"><svg class="icon theme-icon-moon" aria-hidden="true">
+                        <use href="icons.svg#moon"></use>
+                    </svg><svg class="icon theme-icon-sun" aria-hidden="true">
+                        <use href="icons.svg#sun"></use>
+                    </svg><span class="theme-label">Dark</span></button><button id="kebabBtn" class="icon-btn"
+                    aria-label="Open account and navigation menu" aria-haspopup="dialog" aria-controls="slideMenu"
+                    aria-expanded="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#menu"></use>
+                    </svg></button></div>
+        </div>
+    </header>
+    <dialog id="slideMenu" class="slide-menu" aria-labelledby="menuTitle">
+        <div class="drawer-top">
+            <h2 id="menuTitle">Your campus space</h2><button class="icon-btn" data-close-dialog
+                aria-label="Close menu"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#close"></use>
+                </svg></button>
+        </div>
+        <div class="menu-user"><span class="avatar" id="menuAvatar"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg></span>
+            <div>
+                <h3 id="menuName">Welcome to ARMS</h3>
+                <p id="menuEmail">Learn more. Share more.</p>
+            </div>
+        </div>
+        <nav class="menu-items" aria-label="Account and mobile navigation"><a href="index.html"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#grid"></use>
+                </svg>Home</a><a href="ads.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#book"></use>
+                </svg>Browse resources</a><a href="index.html#how-it-works"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#info"></use>
+                </svg>How it works</a><a href="post-ad.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#plus"></use>
+                </svg>Post an ad</a><button id="menuProfile" hidden><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg>My profile & ads</button><a id="menuLogin" href="login.html"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#lock"></use>
+                </svg>Sign in</a><a id="menuRegister" href="register.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#users"></use>
+                </svg>Create an account</a><button id="menuLogout" hidden><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#logout"></use>
+                </svg>Sign out</button></nav>
+        <p class="drawer-foot">A little sharing goes a long way.<br><span>Made for the BAUET community.</span></p>
+    </dialog>
+    <dialog id="profileDialog" class="profile-modal" aria-labelledby="profileTitle">
+        <div class="dialog-heading">
+            <div><span class="eyebrow">YOUR ACCOUNT</span>
+                <h2 id="profileTitle">My profile</h2>
+            </div><button class="icon-btn" data-close-dialog aria-label="Close profile"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#close"></use>
+                </svg></button>
+        </div>
+        <div class="profile-person"><span class="avatar" id="dlgAvatar"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg></span>
+            <div>
+                <h3 id="dlgName"></h3>
+                <p id="dlgEmail"></p>
+            </div>
+        </div>
+        <div class="section-heading">
+            <h3>My ads <span class="count-badge" id="adsCount">—</span></h3><a href="post-ad.html"
+                class="text-link">Post an ad <svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#plus"></use>
+                </svg></a>
+        </div>
+        <div class="ads-grid profile-grid" id="userAdsContainer"></div>
+    </dialog>
+    <div class="network-banner" id="networkBanner" role="status" hidden><svg class="icon " aria-hidden="true">
+            <use href="icons.svg#info"></use>
+        </svg>You’re offline. Reconnect to load or share resources.</div>
+    <main class="container auth-layout register-layout" id="main">
+        <aside class="auth-aside"><span class="eyebrow">A COMMUNITY THAT SHARES, GROWS.</span>
+            <h2>Your campus.<br>Your people.<br>Your next chapter.</h2>
+            <p>The right resource can make all the difference.<br>Find it here. Share it forward.</p>
+            <div class="aside-illustration"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#book"></use>
+                </svg><span>LEARN. SHARE. REPEAT.</span></div>
+            <div class="aside-note"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#users"></use>
+                </svg>Made for the BAUET community.</div>
+        </aside>
+        <section class="auth-panel"><a href="index.html" class="back-link"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#back"></use>
+                </svg>Back to home</a><span class="eyebrow">LET’S MAKE LEARNING BETTER</span>
+            <h1>Join your campus community.</h1>
+            <p class="form-subtitle">Create an account and start sharing something good.</p>
+            <form id="registerForm" novalidate>
+                <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text"
+                        placeholder="Your full name" aria-describedby="err-name" required maxlength="50"
+                        autocomplete="name">
+                    <p class="field-error" id="err-name"></p>
+                </div>
+                <div class="form-row">
+                    <div class="field"><label for="dept">Department</label><input id="dept" name="dept" type="text"
+                            placeholder="e.g. CSE" aria-describedby="err-dept" required maxlength="80">
+                        <p class="field-error" id="err-dept"></p>
+                    </div>
+                    <div class="field"><label for="sid">Student ID</label><input id="sid" name="sid" type="text"
+                            placeholder="Your student ID" aria-describedby="err-sid" required maxlength="40">
+                        <p class="field-error" id="err-sid"></p>
+                    </div>
+                </div>
+                <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email"
+                        placeholder="you@example.com" aria-describedby="err-email" required autocomplete="email">
+                    <p class="field-error" id="err-email"></p>
+                </div>
+                <div class="form-row">
+                    <div class="field"><label for="password">Password</label>
+                        <div class="password-wrap"><input id="password" name="password" type="password"
+                                placeholder="At least 6 characters" aria-describedby="err-password" required
+                                minlength="6" autocomplete="new-password"><button type="button"
+                                class="password-toggle icon-btn" data-toggle-password="password"
+                                aria-label="Show password" aria-pressed="false"><svg class="icon " aria-hidden="true">
+                                    <use href="icons.svg#eye"></use>
+                                </svg></button></div>
+                        <p class="field-error" id="err-password"></p>
+                    </div>
+                    <div class="field"><label for="confirmPassword">Confirm password</label>
+                        <div class="password-wrap"><input id="confirmPassword" name="confirmPassword" type="password"
+                                placeholder="Re-enter password" aria-describedby="err-confirmPassword" required
+                                minlength="6" autocomplete="new-password"><button type="button"
+                                class="password-toggle icon-btn" data-toggle-password="confirmPassword"
+                                aria-label="Show confirm password" aria-pressed="false"><svg class="icon "
+                                    aria-hidden="true">
+                                    <use href="icons.svg#eye"></use>
+                                </svg></button></div>
+                        <p class="field-error" id="err-confirmPassword"></p>
+                    </div>
+                </div>
+                <div class="form-message" id="formMessage" role="alert" hidden></div><button id="registerBtn"
+                    type="submit" class="btn btn-primary btn-full">Create an account <svg class="icon "
+                        aria-hidden="true">
+                        <use href="icons.svg#arrow"></use>
+                    </svg></button>
+            </form>
+            <p class="form-switch">Already part of the community? <a id="loginLink" href="login.html">Sign in</a></p>
+        </section>
+    </main>
+    <footer class="simple-footer container"><span>© <span data-year>2026</span> ARMS · BAUET</span><a
+            href="index.html">Back to the campus hub ↗</a></footer>
+    <div id="toastRegion" class="toast-region" role="status" aria-live="polite"></div><noscript>
+        <div class="noscript-note">Please enable JavaScript to sign in, load resources and post ads.</div>
+    </noscript>
+</body>
+
+</html>

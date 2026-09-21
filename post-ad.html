@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123c43">
+    <meta name="description"
+        content="ARMS connects the BAUET community with academic notes, books, lab equipment, question papers and study resources.">
+    <title>Post an ad · ARMS</title>
+    <link rel="icon" href="arms.png" type="image/png">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="ui.js"></script>
+    <script type="module" src="nav-auth-menu.js"></script>
+    <script type="module" src="post-ad.ui.firebase.js"></script>
+</head>
+
+<body class="page-post"><a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-progress" aria-hidden="true"></div>
+    <header class="site-header">
+        <div class="container header-inner"><a class="brand" href="index.html" aria-label="ARMS home"><img
+                    src="arms.png" width="42" height="42" alt=""><span>ARMS<small>THE CAMPUS RESOURCE
+                        HUB</small></span></a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="ads.html">Browse resources</a><a
+                    href="index.html#how-it-works">How it works</a>
+            </nav>
+            <div class="header-actions"><a href="login.html" class="sign-in-link" id="headerLogin">Sign in</a><a
+                    href="post-ad.html" class="btn btn-primary btn-small" id="postAdBtn"><svg class="icon "
+                        aria-hidden="true">
+                        <use href="icons.svg#plus"></use>
+                    </svg><span>Post an ad</span></a><button type="button" class="theme-toggle icon-btn"
+                    data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"
+                    title="Switch to dark mode"><svg class="icon theme-icon-moon" aria-hidden="true">
+                        <use href="icons.svg#moon"></use>
+                    </svg><svg class="icon theme-icon-sun" aria-hidden="true">
+                        <use href="icons.svg#sun"></use>
+                    </svg><span class="theme-label">Dark</span></button><button id="kebabBtn" class="icon-btn"
+                    aria-label="Open account and navigation menu" aria-haspopup="dialog" aria-controls="slideMenu"
+                    aria-expanded="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#menu"></use>
+                    </svg></button></div>
+        </div>
+    </header>
+    <dialog id="slideMenu" class="slide-menu" aria-labelledby="menuTitle">
+        <div class="drawer-top">
+            <h2 id="menuTitle">Your campus space</h2><button class="icon-btn" data-close-dialog
+                aria-label="Close menu"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#close"></use>
+                </svg></button>
+        </div>
+        <div class="menu-user"><span class="avatar" id="menuAvatar"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg></span>
+            <div>
+                <h3 id="menuName">Welcome to ARMS</h3>
+                <p id="menuEmail">Learn more. Share more.</p>
+            </div>
+        </div>
+        <nav class="menu-items" aria-label="Account and mobile navigation"><a href="index.html"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#grid"></use>
+                </svg>Home</a><a href="ads.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#book"></use>
+                </svg>Browse resources</a><a href="index.html#how-it-works"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#info"></use>
+                </svg>How it works</a><a href="post-ad.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#plus"></use>
+                </svg>Post an ad</a><button id="menuProfile" hidden><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg>My profile & ads</button><a id="menuLogin" href="login.html"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#lock"></use>
+                </svg>Sign in</a><a id="menuRegister" href="register.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#users"></use>
+                </svg>Create an account</a><button id="menuLogout" hidden><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#logout"></use>
+                </svg>Sign out</button></nav>
+        <p class="drawer-foot">A little sharing goes a long way.<br><span>Made for the BAUET community.</span></p>
+    </dialog>
+    <dialog id="profileDialog" class="profile-modal" aria-labelledby="profileTitle">
+        <div class="dialog-heading">
+            <div><span class="eyebrow">YOUR ACCOUNT</span>
+                <h2 id="profileTitle">My profile</h2>
+            </div><button class="icon-btn" data-close-dialog aria-label="Close profile"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#close"></use>
+                </svg></button>
+        </div>
+        <div class="profile-person"><span class="avatar" id="dlgAvatar"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg></span>
+            <div>
+                <h3 id="dlgName"></h3>
+                <p id="dlgEmail"></p>
+            </div>
+        </div>
+        <div class="section-heading">
+            <h3>My ads <span class="count-badge" id="adsCount">—</span></h3><a href="post-ad.html"
+                class="text-link">Post an ad <svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#plus"></use>
+                </svg></a>
+        </div>
+        <div class="ads-grid profile-grid" id="userAdsContainer"></div>
+    </dialog>
+    <div class="network-banner" id="networkBanner" role="status" hidden><svg class="icon " aria-hidden="true">
+            <use href="icons.svg#info"></use>
+        </svg>You’re offline. Reconnect to load or share resources.</div>
+    <main id="main" class="container post-main">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Post an
+                ad</span></nav>
+        <div class="post-layout">
+            <aside class="post-aside"><span class="eyebrow">GIVE KNOWLEDGE ANOTHER CHAPTER</span>
+                <h1>Something to share?<br><span>Start here.</span></h1>
+                <p>Your notes, books and study essentials could be exactly what someone else needs.</p>
+                <div class="posting-tips">
+                    <h2>A great listing starts with…</h2>
+                    <div><svg class="icon " aria-hidden="true">
+                            <use href="icons.svg#check"></use>
+                        </svg>
+                        <p><strong>A clear, specific title</strong><span>Add the subject, course or book name.</span>
+                        </p>
+                    </div>
+                    <div><svg class="icon " aria-hidden="true">
+                            <use href="icons.svg#check"></use>
+                        </svg>
+                        <p><strong>The details that matter</strong><span>Mention the condition, edition or
+                                semester.</span></p>
+                    </div>
+                    <div><svg class="icon " aria-hidden="true">
+                            <use href="icons.svg#check"></use>
+                        </svg>
+                        <p><strong>A helpful photo</strong><span>Let students see what you’re sharing.</span></p>
+                    </div>
+                </div>
+                <div class="tip-note"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#leaf"></use>
+                    </svg>Small acts of sharing.<br>A bigger world of learning.</div>
+            </aside>
+            <section class="post-panel" aria-labelledby="postTitle">
+                <div class="form-panel-heading"><span class="tile-icon mint"><svg class="icon " aria-hidden="true">
+                            <use href="icons.svg#plus"></use>
+                        </svg></span>
+                    <div>
+                        <h2 id="postTitle">Create your listing</h2>
+                        <p>Tell your campus what you’re sharing.</p>
+                    </div>
+                </div>
+                <div class="session-status" id="sessionStatus" role="status"><span class="spinner"></span>Checking your
+                    session…</div>
+                <form id="adForm" novalidate>
+                    <fieldset id="adFields" disabled>
+                        <legend class="visually-hidden">Listing details</legend>
+                        <div class="field"><label for="title">Advertisement title *</label><input id="title"
+                                name="title" type="text" placeholder="e.g. Data Structures — complete lecture notes"
+                                aria-describedby="err-title" required maxlength="80">
+                            <p class="field-error" id="err-title"></p>
+                        </div>
+                        <div class="meta-row"><small>A short, descriptive title works best.</small><small
+                                id="titleCount">0/80</small></div>
+                        <div class="form-row">
+                            <div class="field"><label for="category">Category *</label><select id="category"
+                                    name="category" required aria-describedby="err-category">
+                                    <option value="">Select a category</option>
+                                    <option>Notes</option>
+                                    <option>Books</option>
+                                    <option>Lab Equipment</option>
+                                    <option>Question Papers</option>
+                                    <option>Assignments</option>
+                                </select>
+                                <p class="field-error" id="err-category"></p>
+                            </div>
+                            <div class="field"><label for="price">Price (৳) *</label><input id="price" name="price"
+                                    type="number" placeholder="0 for a free resource" aria-describedby="err-price"
+                                    required min="0" step="1" inputmode="numeric">
+                                <p class="field-error" id="err-price"></p>
+                            </div>
+                        </div>
+                        <div class="field"><label for="description">Description <span
+                                    class="optional">(optional)</span></label><textarea id="description"
+                                name="description"
+                                placeholder="What’s included? Tell students about the course, condition and anything else they should know."
+                                rows="5" aria-describedby="err-description descHint"></textarea>
+                            <div class="meta-row"><small id="descHint">Add any details you want to share.</small></div>
+                            <p class="field-error" id="err-description"></p>
+                        </div>
+                        <div class="field"><label for="image">Resource photo <span
+                                    class="optional">(optional)</span></label><label id="dropZone" class="drop-zone"
+                                for="image"><svg class="icon " aria-hidden="true">
+                                    <use href="icons.svg#upload"></use>
+                                </svg><strong>Choose a photo <span>or drag it here</span></strong><small>JPG, PNG or
+                                    WebP · Up to 3 MB</small><input type="file" id="image" name="image"
+                                    accept="image/jpeg,image/png,image/webp" aria-describedby="err-image"></label>
+                            <div id="preview" class="preview" hidden><img id="previewImg" alt="Selected resource photo">
+                                <div><strong id="previewName"></strong><small id="previewSize"></small><button
+                                        type="button" id="removeImage" class="text-link"><svg class="icon "
+                                            aria-hidden="true">
+                                            <use href="icons.svg#close"></use>
+                                        </svg>Remove photo</button></div>
+                            </div>
+                            <p class="field-error" id="err-image"></p><button type="button" id="clearImageError"
+                                class="text-link" hidden>Continue without a photo</button>
+                        </div>
+                        <div class="field"><label class="checkbox"><input type="checkbox" id="agree" required
+                                    aria-describedby="err-agree"><span>I confirm that I have the right to share this
+                                    resource and that it does not violate copyright.</span></label>
+                            <p class="field-error" id="err-agree"></p>
+                        </div>
+                        <div class="upload-progress" id="uploadProgress" hidden>
+                            <div class="meta-row"><span id="uploadLabel">Uploading photo…</span><span
+                                    id="uploadPercent">0%</span></div><progress id="uploadBar" max="100"
+                                value="0">0%</progress>
+                        </div>
+                        <div class="form-message" id="formMessage" role="alert" hidden></div><button id="submitBtn"
+                            class="btn btn-primary btn-full" type="submit">Publish ad <svg class="icon "
+                                aria-hidden="true">
+                                <use href="icons.svg#arrow"></use>
+                            </svg></button>
+                        <p class="form-footnote"><svg class="icon " aria-hidden="true">
+                                <use href="icons.svg#info"></use>
+                            </svg>Your name and email will be visible on this listing.</p>
+                    </fieldset>
+                </form>
+                <div id="confirmation" class="confirmation" tabindex="-1" hidden><span class="success-icon"><svg
+                            class="icon " aria-hidden="true">
+                            <use href="icons.svg#check"></use>
+                        </svg></span>
+                    <h2>Your resource is out there!</h2>
+                    <p>Your ad is published and ready for the campus to discover.</p>
+                    <div class="actions"><a href="ads.html" class="btn btn-primary">Browse resources <svg class="icon "
+                                aria-hidden="true">
+                                <use href="icons.svg#arrow"></use>
+                            </svg></a><button type="button" id="postAnother" class="btn btn-outline">Post another
+                            ad</button></div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="simple-footer container"><span>© <span data-year>2026</span> ARMS · BAUET</span><a
+            href="index.html">Back to the campus hub ↗</a></footer>
+    <div id="toastRegion" class="toast-region" role="status" aria-live="polite"></div><noscript>
+        <div class="noscript-note">Please enable JavaScript to sign in, load resources and post ads.</div>
+    </noscript>
+</body>
+
+</html>

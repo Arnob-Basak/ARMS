@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123c43">
+    <meta name="description"
+        content="ARMS connects the BAUET community with academic notes, books, lab equipment, question papers and study resources.">
+    <title>Browse resources · ARMS</title>
+    <link rel="icon" href="arms.png" type="image/png">
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="ui.js"></script>
+    <script type="module" src="nav-auth-menu.js"></script>
+    <script type="module" src="ads-display.js"></script>
+</head>
+
+<body class="page-ads"><a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-progress" aria-hidden="true"></div>
+    <header class="site-header">
+        <div class="container header-inner"><a class="brand" href="index.html" aria-label="ARMS home"><img
+                    src="arms.png" width="42" height="42" alt=""><span>ARMS<small>THE CAMPUS RESOURCE
+                        HUB</small></span></a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="index.html">Home</a><a href="ads.html" aria-current="page">Browse resources</a><a
+                    href="index.html#how-it-works">How it works</a>
+            </nav>
+            <div class="header-actions"><a href="login.html" class="sign-in-link" id="headerLogin">Sign in</a><a
+                    href="post-ad.html" class="btn btn-primary btn-small" id="postAdBtn"><svg class="icon "
+                        aria-hidden="true">
+                        <use href="icons.svg#plus"></use>
+                    </svg><span>Post an ad</span></a><button type="button" class="theme-toggle icon-btn"
+                    data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"
+                    title="Switch to dark mode"><svg class="icon theme-icon-moon" aria-hidden="true">
+                        <use href="icons.svg#moon"></use>
+                    </svg><svg class="icon theme-icon-sun" aria-hidden="true">
+                        <use href="icons.svg#sun"></use>
+                    </svg><span class="theme-label">Dark</span></button><button id="kebabBtn" class="icon-btn"
+                    aria-label="Open account and navigation menu" aria-haspopup="dialog" aria-controls="slideMenu"
+                    aria-expanded="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#menu"></use>
+                    </svg></button></div>
+        </div>
+    </header>
+    <dialog id="slideMenu" class="slide-menu" aria-labelledby="menuTitle">
+        <div class="drawer-top">
+            <h2 id="menuTitle">Your campus space</h2><button class="icon-btn" data-close-dialog
+                aria-label="Close menu"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#close"></use>
+                </svg></button>
+        </div>
+        <div class="menu-user"><span class="avatar" id="menuAvatar"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg></span>
+            <div>
+                <h3 id="menuName">Welcome to ARMS</h3>
+                <p id="menuEmail">Learn more. Share more.</p>
+            </div>
+        </div>
+        <nav class="menu-items" aria-label="Account and mobile navigation"><a href="index.html"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#grid"></use>
+                </svg>Home</a><a href="ads.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#book"></use>
+                </svg>Browse resources</a><a href="index.html#how-it-works"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#info"></use>
+                </svg>How it works</a><a href="post-ad.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#plus"></use>
+                </svg>Post an ad</a><button id="menuProfile" hidden><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg>My profile & ads</button><a id="menuLogin" href="login.html"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#lock"></use>
+                </svg>Sign in</a><a id="menuRegister" href="register.html"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#users"></use>
+                </svg>Create an account</a><button id="menuLogout" hidden><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#logout"></use>
+                </svg>Sign out</button></nav>
+        <p class="drawer-foot">A little sharing goes a long way.<br><span>Made for the BAUET community.</span></p>
+    </dialog>
+    <dialog id="profileDialog" class="profile-modal" aria-labelledby="profileTitle">
+        <div class="dialog-heading">
+            <div><span class="eyebrow">YOUR ACCOUNT</span>
+                <h2 id="profileTitle">My profile</h2>
+            </div><button class="icon-btn" data-close-dialog aria-label="Close profile"><svg class="icon "
+                    aria-hidden="true">
+                    <use href="icons.svg#close"></use>
+                </svg></button>
+        </div>
+        <div class="profile-person"><span class="avatar" id="dlgAvatar"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#user"></use>
+                </svg></span>
+            <div>
+                <h3 id="dlgName"></h3>
+                <p id="dlgEmail"></p>
+            </div>
+        </div>
+        <div class="section-heading">
+            <h3>My ads <span class="count-badge" id="adsCount">—</span></h3><a href="post-ad.html"
+                class="text-link">Post an ad <svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#plus"></use>
+                </svg></a>
+        </div>
+        <div class="ads-grid profile-grid" id="userAdsContainer"></div>
+    </dialog>
+    <div class="network-banner" id="networkBanner" role="status" hidden><svg class="icon " aria-hidden="true">
+            <use href="icons.svg#info"></use>
+        </svg>You’re offline. Reconnect to load or share resources.</div>
+    <main id="main">
+        <section class="page-intro">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb"><a
+                        href="index.html">Home</a><span>/</span><span>Resources</span></nav><span class="eyebrow">THE
+                    CAMPUS COLLECTION</span>
+                <h1 id="categoryTitle">Explore academic resources.</h1>
+                <p>Find something useful. Make your next semester a little easier.</p>
+                <form id="resourceSearch" class="listing-search" role="search"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#search"></use>
+                    </svg><label class="visually-hidden" for="searchInput">Search resources</label><input
+                        id="searchInput" name="q" type="search" placeholder="Search by title, category or description…"
+                        maxlength="150"><button class="btn btn-primary" type="submit">Search</button></form>
+            </div>
+        </section>
+        <section class="container resource-section">
+            <div class="filter-list" aria-label="Filter resources by category"><button class="filter-chip active"
+                    data-category="" type="button" aria-pressed="true"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#grid"></use>
+                    </svg>All resources</button><button class="filter-chip" type="button" data-category="Notes"
+                    aria-pressed="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#notes"></use>
+                    </svg>Notes</button><button class="filter-chip" type="button" data-category="Books"
+                    aria-pressed="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#book"></use>
+                    </svg>Books</button><button class="filter-chip" type="button" data-category="Lab Equipment"
+                    aria-pressed="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#flask"></use>
+                    </svg>Lab Equipment</button><button class="filter-chip" type="button"
+                    data-category="Question Papers" aria-pressed="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#question"></use>
+                    </svg>Question Papers</button><button class="filter-chip" type="button" data-category="Assignments"
+                    aria-pressed="false"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#checklist"></use>
+                    </svg>Assignments</button></div>
+            <div class="results-toolbar">
+                <p id="resultsCount" role="status">Loading resources…</p><label class="sort-control"
+                    for="sortSelect">Sort by <select id="sortSelect">
+                        <option value="newest">Newest first</option>
+                        <option value="price-asc">Price: low to high</option>
+                        <option value="price-desc">Price: high to low</option>
+                    </select></label>
+            </div>
+            <div id="adsContainer" class="ads-grid" aria-busy="true">
+                <p class="loading-text" role="status">Loading resources…</p>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-about"><a class="brand" href="index.html" aria-label="ARMS home"><img src="arms.png"
+                        width="42" height="42" alt=""><span>ARMS<small>THE CAMPUS RESOURCE HUB</small></span></a>
+                <p>Good resources deserve a second chapter.<br>Connecting students through knowledge,<br>one resource at
+                    a time.</p><span class="footer-location"><svg class="icon " aria-hidden="true">
+                        <use href="icons.svg#location"></use>
+                    </svg>BAUET, Natore, Bangladesh</span>
+            </div>
+            <div>
+                <h3>Explore resources</h3>
+                <ul>
+                    <li><a href="ads.html?category=Notes">Notes</a></li>
+                    <li><a href="ads.html?category=Books">Books</a></li>
+                    <li><a href="ads.html?category=Lab%20Equipment">Lab Equipment</a></li>
+                    <li><a href="ads.html?category=Question%20Papers">Question Papers</a></li>
+                    <li><a href="ads.html?category=Assignments">Assignments</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Your campus space</h3>
+                <ul>
+                    <li><a href="post-ad.html">Post an ad</a></li>
+                    <li><a href="login.html">Sign in</a></li>
+                    <li><a href="register.html">Join the community</a></li>
+                    <li><a href="index.html#how-it-works">How it works</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Get in touch</h3>
+                <p>Qadirabad Cantonment<br>Dayarampur, Natore-6431</p><a
+                    href="mailto:info@arms.bauet.ac.bd">info@arms.bauet.ac.bd</a><a href="tel:+8801708503558">+880 1708
+                    503558</a>
+            </div>
+        </div>
+        <div class="container footer-bottom"><span>© <span data-year>2026</span> ARMS. All rights
+                reserved.</span><span>Built with purpose by BAUET CSE Students</span><button class="icon-btn scroll-top"
+                aria-label="Back to top"><svg class="icon " aria-hidden="true">
+                    <use href="icons.svg#up"></use>
+                </svg></button></div>
+    </footer>
+    <div id="toastRegion" class="toast-region" role="status" aria-live="polite"></div><noscript>
+        <div class="noscript-note">Please enable JavaScript to sign in, load resources and post ads.</div>
+    </noscript>
+</body>
+
+</html>
