@@ -290,6 +290,6 @@ Contributions, improvements, bug fixes, and new feature ideas can be added throu
 
 **ARMS — A little sharing. A lot of possibility.**
 
-🌐 [Visit ARMS](https://admirable-biscuit-ecdcfb.netlify.app/)
+🌐 [Visit ARMS](https://github.com/Arnob-Basak/ARMS)
 
 </div>
